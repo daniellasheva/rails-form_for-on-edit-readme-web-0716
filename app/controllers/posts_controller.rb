@@ -25,7 +25,9 @@ class PostsController < ApplicationController
 
 	def update
 	  @post = Post.find(params[:id])
-	  @post.update(title: params[:title], description: params[:description])
-	  redirect_to post_path(@post)
+	  @post.update(params.require(:post))
+		redirect_to post_path(@post)
+		#this is because you need to get into the hash that is now nested
+		#form_for is bound up exactly with "post"
 	end
 end
